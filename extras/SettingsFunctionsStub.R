@@ -2,11 +2,21 @@ createCharacterizationModuleSpecifications <- function(targetIds,
                                                        outcomeIds,
                                                        dechallengeStopInterval = 30,
                                                        dechallengeEvaluationWindow = 30,
-                                                       riskWindowStart = 1,
-                                                       startAnchor = "cohort start",
-                                                       riskWindowEnd = 0,
-                                                       endAnchor = "cohort end",
+                                                       timeAtRisk = data.frame(
+                                                         riskWindowStart = c(1,1),
+                                                         startAnchor = c("cohort start","cohort start"),
+                                                         riskWindowEnd = c(0,365),
+                                                         endAnchor = c("cohort end","cohort end")
+                                                       ),
                                                        covariateSettings = FeatureExtraction::createDefaultCovariateSettings()) {
+  #input checks
+  if(!inherits(timeAtRisk, 'data.frame')){
+    stop('timeAtRisk must be a data.frame')
+  }
+  if(nrow(timeAtRisk) == 0){
+    stop('timeAtRisk must be a non-empty data.frame')
+  }
+
   timeToEventSettings <- Characterization::createTimeToEventSettings(
     targetIds = targetIds,
     outcomeIds = outcomeIds
@@ -19,20 +29,24 @@ createCharacterizationModuleSpecifications <- function(targetIds,
     dechallengeEvaluationWindow = dechallengeEvaluationWindow
   )
 
-  aggregateCovariateSettings <- Characterization::createAggregateCovariateSettings(
-    targetIds = targetIds,
-    outcomeIds = outcomeIds,
-    riskWindowStart = riskWindowStart,
-    startAnchor = startAnchor,
-    riskWindowEnd = riskWindowEnd,
-    endAnchor = endAnchor,
-    covariateSettings = covariateSettings
-  )
+  aggregateCovariateSettings <- lapply(
+    X = 1:nrow(timeAtRisk),
+    FUN = function(i){
+      Characterization::createAggregateCovariateSettings(
+        targetIds = targetIds,
+        outcomeIds = outcomeIds,
+        riskWindowStart = timeAtRisk$riskWindowStart[i],
+        startAnchor = timeAtRisk$startAnchor[i],
+        riskWindowEnd = timeAtRisk$riskWindowEnd[i],
+        endAnchor = timeAtRisk$endAnchor[i],
+        covariateSettings = covariateSettings
+      )
+  })
 
   analysis <- Characterization::createCharacterizationSettings(
     timeToEventSettings = list(timeToEventSettings),
     dechallengeRechallengeSettings = list(dechallengeRechallengeSettings),
-    aggregateCovariateSettings = list(aggregateCovariateSettings)
+    aggregateCovariateSettings = aggregateCovariateSettings
   )
 
   specifications <- list(

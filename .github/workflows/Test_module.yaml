@@ -20,7 +20,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release', rspm: "https://cloud.r-project.org"}
           - {os: macOS-latest, r: 'release', rspm: "https://cloud.r-project.org"}
-          #- {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       GITHUB_PAT: ${{ secrets.GH_TOKEN }}
@@ -60,6 +60,6 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 4
-          
+
       - name: Run module test script
         run: Rscript tests/testScript.R

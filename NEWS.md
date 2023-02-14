@@ -1,3 +1,8 @@
+CharacterizationModule 0.2.3
+=======================
+
+Update to Characterization v0.0.6
+
 CharacterizationModule 0.2.2
 =======================
 
