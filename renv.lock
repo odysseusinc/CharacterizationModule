@@ -53,13 +53,13 @@
     },
     "Characterization": {
       "Package": "Characterization",
-      "Version": "0.0.5",
+      "Version": "0.0.6",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "Characterization",
       "RemoteUsername": "ohdsi",
-      "RemoteRef": "02a501562d196aec352f983615158002777b86e0",
+      "RemoteRef": "v0.0.6",
       "Requirements": []
     },
     "Eunomia": {
