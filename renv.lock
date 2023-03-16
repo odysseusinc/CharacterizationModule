@@ -31,7 +31,7 @@
     },
     "Characterization": {
       "Package": "Characterization",
-      "Version": "0.1.0",
+      "Version": "0.1.1",
       "Source": "GitHub",
       "Remotes": "ohdsi/FeatureExtraction, ohdsi/Eunomia,\n        ohdsi/ResultModelManager, ohdsi/ShinyAppBuilder",
       "RemoteType": "github",
@@ -39,7 +39,7 @@
       "RemoteRepo": "Characterization",
       "RemoteUsername": "OHDSI",
       "RemoteRef": "HEAD",
-      "RemoteSha": "0a939062e49289077af8c32311a5cd83e752a422",
+      "RemoteSha": "1e04d266b4d23dc85c286dcbe3b21514f2e54281",
       "Requirements": [
         "Andromeda",
         "DatabaseConnector",
@@ -52,7 +52,7 @@
         "readr",
         "rlang"
       ],
-      "Hash": "d951aa6fcfbb651e74f505ea71ccc5a0"
+      "Hash": "4dda387ffd16d64407e78e260917586d"
     },
     "CohortGenerator": {
       "Package": "CohortGenerator",
