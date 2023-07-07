@@ -58,7 +58,7 @@
       "Package": "CohortGenerator",
       "Version": "0.8.0",
       "Source": "GitHub",
-      "Remotes": "ohdsi/CirceR, ohdsi/Eunomia, ohdsi/ROhdsiWebApi",
+      "Remotes": "",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "CohortGenerator",
